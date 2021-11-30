@@ -2,6 +2,7 @@ package ua.lviv.iot.labaqa.pages;
 
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import ua.lviv.iot.labaqa.locators.Locator;
@@ -16,20 +17,52 @@ public class TravelDataPage extends BasePage {
         super(driver);
     }
 
+    public WebElement getFirstNameField() {
+        return findElement(TravelDataLocator.FIRST_NAME_INPUT);
+    }
+
+    public WebElement getSurnameField() {
+        return findElement(TravelDataLocator.SURNAME_INPUT);
+    }
+
+    public WebElement getBirthdayField() {
+        return findElement(TravelDataLocator.BIRTHDAY_INPUT);
+    }
+
+    public WebElement getNoDiscountsCheckbox() {
+        return findElement(TravelDataLocator.NO_DISCOUNTS_CHECKBOX);
+    }
+
+    public WebElement getTravelOptions() {
+        return findElement(TravelDataLocator.TRAVEL_OPTIONS);
+    }
+
+    public WebElement getFirstClassToggle() {
+        return findElement(TravelDataLocator.FIRST_CLASS_TOGGLE);
+    }
+
+    public WebElement getConfirmButton() {
+        return findElement(TravelDataLocator.CONFIRM);
+    }
+
+    public WebElement getDiscountCardsDropdown() {
+        return findElement(TravelDataLocator.DISCOUNT_CARDS_DROPDOWN);
+    }
+
     public void setFirstName(String name) {
-        enterText(TravelDataLocator.FIRST_NAME_INPUT, name);
+        enterText(getFirstNameField(), name);
     }
 
     public void setSurname(String surname) {
-        enterText(TravelDataLocator.SURNAME_INPUT, surname);
+        enterText(getSurnameField(), surname);
     }
 
     public void setBirthday(String birthday) {
-        enterText(TravelDataLocator.BIRTHDAY_INPUT, birthday);
+        enterText(getBirthdayField(), birthday);
     }
 
     public void setNoDiscount() {
-        click(TravelDataLocator.NO_DISCOUNTS_CHECKBOX);
+        click(getNoDiscountsCheckbox());
     }
 
     public void waitForElementsLoaded() {
@@ -37,11 +70,12 @@ public class TravelDataPage extends BasePage {
     }
 
     public void moveToTravelOptions() {
-        moveTo(TravelDataLocator.TRAVEL_OPTIONS);
+        moveTo(getTravelOptions());
     }
 
     public void selectFirstClass() {
-        click(TravelDataLocator.FIRST_CLASS_TOGGLE);
+        getFirstClassToggle();
+        click(getFirstClassToggle());
     }
 
     public void submit() {
@@ -49,7 +83,7 @@ public class TravelDataPage extends BasePage {
     }
 
     public void selectSurnameField() {
-        click(TravelDataLocator.SURNAME_INPUT);
+        click(getSurnameField());
     }
 
     public void fluentWaitToBeClickable(Locator locator) {
@@ -65,7 +99,7 @@ public class TravelDataPage extends BasePage {
     }
 
     public void openDiscountsDropdown() {
-        waitForClickable(TravelDataLocator.DISCOUNT_CARDS_DROPDOWN);
+        waitForClickable(getDiscountCardsDropdown());
         fluentWaitToBeClickable(TravelDataLocator.DISCOUNT_CARDS_DROPDOWN);
         fluentWaitToBeClickable(TravelDataLocator.DISCOUNT_CARDS_DROPDOWN);
         fluentWaitToBeClickable(TravelDataLocator.DISCOUNT_CARDS_DROPDOWN);

@@ -1,6 +1,7 @@
 package ua.lviv.iot.labaqa.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ua.lviv.iot.labaqa.locators.LoginLocator;
 
 public class LoginPage extends BasePage {
@@ -9,8 +10,12 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    public WebElement getPurchaseAsGuest() {
+        return findElement(LoginLocator.PURCHASE_AS_GUEST);
+    }
+
     public void clickPurchaseAsGuest() {
-        click(LoginLocator.PURCHASE_AS_GUEST);
+        click(getPurchaseAsGuest());
     }
 
     public void waitForElementsLoaded() {
