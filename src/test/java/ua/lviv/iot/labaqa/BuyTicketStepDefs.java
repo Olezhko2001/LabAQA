@@ -223,8 +223,8 @@ public class BuyTicketStepDefs {
         paymentPage.clickPurchaseButton();
     }
 
-    @Then("I see credit card dialog")
-    public void iSeeCreditCardDialog() {
+    @Then("I do not get errors")
+    public void iDoNotGetErrors() {
         PaymentPageAsserter.assertNoErrorMessage(driver);
     }
 }

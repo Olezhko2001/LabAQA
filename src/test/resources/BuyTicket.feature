@@ -35,7 +35,7 @@ Feature: Buy Ticket
     When I agree to Terms and Conditions
     Then I see Terms and Conditions selected
     When I click purchase button
-    Then I see credit card dialog
+    Then I do not get errors
 
     Examples:
       | from  | to | name | surname | birthday | email |
