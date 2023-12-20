@@ -3,6 +3,7 @@ package ua.lviv.iot.labaqa;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 
 public class DriverFactory {
 
@@ -16,7 +17,9 @@ public class DriverFactory {
             case CHROME:
                 return new ChromeDriver();
             case EDGE:
-                return new EdgeDriver();
+                EdgeOptions options = new EdgeOptions();
+                options.addArguments("--remote-allow-origins=*");
+                return new EdgeDriver(options);
         }
         throw new IllegalArgumentException("No web driver available for " + browser);
     }

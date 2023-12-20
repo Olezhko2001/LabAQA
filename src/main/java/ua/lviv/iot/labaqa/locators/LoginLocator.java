@@ -2,7 +2,8 @@ package ua.lviv.iot.labaqa.locators;
 
 public enum LoginLocator implements Locator {
 
-    PURCHASE_AS_GUEST("//*[@class='text__secondarybutton']");
+    CONTINUE_AS_GUEST("//*[@id='kaufenButtonEnabled']"),
+    LOGIN_AS_GUEST("//*[@id='loginAsGuestButton']");
 
     private final String value;
 

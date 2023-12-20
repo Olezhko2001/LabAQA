@@ -1,7 +1,6 @@
 package ua.lviv.iot.labaqa.pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import ua.lviv.iot.labaqa.locators.ConnectionsLocator;
 
 public class ConnectionsPage extends BasePage {
@@ -10,24 +9,16 @@ public class ConnectionsPage extends BasePage {
         super(driver);
     }
 
-    public WebElement getConnectionsHeader() {
-        return findElement(ConnectionsLocator.CONNECTIONS_HEADER);
-    }
-
-    public WebElement getOriginLocation() {
-        return findElement(ConnectionsLocator.ORIGIN_LOCATION);
-    }
-
-    public WebElement getDestinationLocation() {
-        return findElement(ConnectionsLocator.DESTINATION_LOCATION);
-    }
-
     public WebElement getFirstConnection() {
-        return findElement(ConnectionsLocator.FIRST_CONNECTION);
+        WebElement shadowHost = findElement(ConnectionsLocator.FIRST_CONNECTION_SHADOW_HOST);
+        SearchContext shadowRoot = (SearchContext) ((JavascriptExecutor) driver).executeScript("return arguments[0].shadowRoot", shadowHost);
+        return shadowRoot.findElement(By.cssSelector(ConnectionsLocator.CONNECTION_INSIDE_SHADOW_ROOT_CSS_SELECTOR.getValue()));
     }
 
     public WebElement getSecondConnection() {
-        return findElement(ConnectionsLocator.SECOND_CONNECTION);
+        WebElement shadowHost = findElement(ConnectionsLocator.SECOND_CONNECTION_SHADOW_HOST);
+        SearchContext shadowRoot = (SearchContext) ((JavascriptExecutor) driver).executeScript("return arguments[0].shadowRoot", shadowHost);
+        return shadowRoot.findElement(By.cssSelector(ConnectionsLocator.CONNECTION_INSIDE_SHADOW_ROOT_CSS_SELECTOR.getValue()));
     }
 
     public WebElement getBuySecondTicket() {
@@ -35,14 +26,23 @@ public class ConnectionsPage extends BasePage {
     }
 
     public void clickSecondConnection() {
+        waitForClickable(getSecondConnection());
         click(getSecondConnection());
     }
 
     public void moveToFirstConnection() {
+        waitForVisible(ConnectionsLocator.FIRST_CONNECTION_SHADOW_HOST);
         moveTo(getFirstConnection());
     }
 
     public void buySecondTicket() {
+        waitForVisible(ConnectionsLocator.BUY_SECOND_TICKET);
+        waitForClickable(ConnectionsLocator.BUY_SECOND_TICKET);
         click(getBuySecondTicket());
+    }
+
+    public void waitForBuyButton() {
+        waitForVisible(ConnectionsLocator.BUY_SECOND_TICKET);
+        waitForClickable(getBuySecondTicket());
     }
 }

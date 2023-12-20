@@ -17,6 +17,10 @@ public class TravelDataPage extends BasePage {
         super(driver);
     }
 
+    public WebElement getEmailField() {
+        return findElement(TravelDataLocator.EMAIL_INPUT);
+    }
+
     public WebElement getFirstNameField() {
         return findElement(TravelDataLocator.FIRST_NAME_INPUT);
     }
@@ -33,20 +37,16 @@ public class TravelDataPage extends BasePage {
         return findElement(TravelDataLocator.NO_DISCOUNTS_CHECKBOX);
     }
 
-    public WebElement getTravelOptions() {
-        return findElement(TravelDataLocator.TRAVEL_OPTIONS);
-    }
-
-    public WebElement getFirstClassToggle() {
-        return findElement(TravelDataLocator.FIRST_CLASS_TOGGLE);
-    }
-
     public WebElement getConfirmButton() {
         return findElement(TravelDataLocator.CONFIRM);
     }
 
     public WebElement getDiscountCardsDropdown() {
         return findElement(TravelDataLocator.DISCOUNT_CARDS_DROPDOWN);
+    }
+
+    public void setEmail(String email) {
+        enterText(getEmailField(), email);
     }
 
     public void setFirstName(String name) {
@@ -62,6 +62,7 @@ public class TravelDataPage extends BasePage {
     }
 
     public void setNoDiscount() {
+        waitForVisible(TravelDataLocator.NO_DISCOUNTS_CHECKBOX);
         click(getNoDiscountsCheckbox());
     }
 
@@ -69,17 +70,12 @@ public class TravelDataPage extends BasePage {
         waitForVisible(TravelDataLocator.FIRST_NAME_INPUT);
     }
 
-    public void moveToTravelOptions() {
-        moveTo(getTravelOptions());
-    }
-
-    public void selectFirstClass() {
-        getFirstClassToggle();
-        click(getFirstClassToggle());
-    }
-
     public void submit() {
         fluentWaitToBeClickable(TravelDataLocator.CONFIRM);
+    }
+
+    public void selectNameField() {
+        click(getFirstNameField());
     }
 
     public void selectSurnameField() {

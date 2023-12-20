@@ -5,6 +5,10 @@ import ua.lviv.iot.labaqa.locators.TravelDataLocator;
 
 public class TravelDataPageAsserter extends BaseAsserter {
 
+    public static void assertEmailFieldContains(String text, WebDriver driver) {
+        assertFieldContains(findElement(driver, TravelDataLocator.EMAIL_INPUT), text);
+    }
+
     public static void assertNameFieldContains(String text, WebDriver driver) {
         assertFieldContains(findElement(driver, TravelDataLocator.FIRST_NAME_INPUT), text);
     }
@@ -23,10 +27,5 @@ public class TravelDataPageAsserter extends BaseAsserter {
 
     public static void assertElementsVisible(WebDriver driver) {
         assertElementDisplayed(findElement(driver, TravelDataLocator.FIRST_NAME_INPUT));
-    }
-
-    public static void assertFirstClassSelected(WebDriver driver) {
-        findElement(driver, TravelDataLocator.FIRST_CLASS_OPTION);
-        assertElementChecked(findElement(driver, TravelDataLocator.FIRST_CLASS_OPTION));
     }
 }

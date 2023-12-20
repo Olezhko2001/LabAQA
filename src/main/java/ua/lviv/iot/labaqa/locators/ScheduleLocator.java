@@ -1,9 +1,10 @@
 package ua.lviv.iot.labaqa.locators;
 
 public enum ScheduleLocator implements Locator {
-    FROM_FIELD("//*[@id='fromField']"),
-    TO_FIELD("//*[@id='toField']"),
-    SEARCH("//*[@class='text__primarybutton button']");
+    SHOW_PURPOSES_BUTTON("//*[@id='onetrust-pc-btn-handler']"),
+    REFUSE_ALL_BUTTON("//*[@class='ot-pc-refuse-all-handler']"),
+    FROM_FIELD("//*[@id='From0']"),
+    TO_FIELD("//*[@id='To1']");
 
     private final String value;
 

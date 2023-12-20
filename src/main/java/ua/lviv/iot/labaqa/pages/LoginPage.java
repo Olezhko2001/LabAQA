@@ -11,14 +11,25 @@ public class LoginPage extends BasePage {
     }
 
     public WebElement getPurchaseAsGuest() {
-        return findElement(LoginLocator.PURCHASE_AS_GUEST);
+        return findElement(LoginLocator.CONTINUE_AS_GUEST);
+    }
+    public WebElement getLoginAsGuest() {
+        return findElement(LoginLocator.LOGIN_AS_GUEST);
     }
 
     public void clickPurchaseAsGuest() {
         click(getPurchaseAsGuest());
     }
 
+    public void waitForLoginAsGuest() {
+        waitForVisible(LoginLocator.LOGIN_AS_GUEST);
+    }
+
+    public void clickLoginAsGuest() {
+        click(getLoginAsGuest());
+    }
+
     public void waitForElementsLoaded() {
-        waitForVisible(LoginLocator.PURCHASE_AS_GUEST);
+        waitForVisible(LoginLocator.CONTINUE_AS_GUEST);
     }
 }
